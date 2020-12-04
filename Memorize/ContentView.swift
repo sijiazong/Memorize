@@ -22,20 +22,19 @@ struct ContentView: View {
     var body: some View {
         HStack {
             ForEach(viewModel.cards){ card in
-                CardView(card: card, fontSize: self.fontSize).onTapGesture{
+                CardView(card: card).onTapGesture{
                     self.viewModel.choose(card: card)
                 }
             }
         }
             .foregroundColor(Color.orange)
             .padding()
+            .font(fontSize)
     }
 }
 
 struct CardView: View {
     var card: MemoryGame<String>.Card
-    
-    var fontSize: Font
     
     var body: some View {
             ZStack {
@@ -46,8 +45,7 @@ struct CardView: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(lineWidth: 3)
                         .aspectRatio(2/3, contentMode: .fit)
-                    Text(card.content).font(fontSize)
-                    
+                    Text(card.content)
                 } else {
                     RoundedRectangle(cornerRadius: 10).fill()
                 }
