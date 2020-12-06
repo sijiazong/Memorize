@@ -12,11 +12,7 @@ struct EmojiMemoryGameView: View {
     var viewModel: EmojiMemoryGame
     
     var fontSize: Font {
-        if viewModel.cards.count < 5 {
-            return Font.largeTitle
-        } else {
-            return Font.body
-        }
+        viewModel.cards.count < 5 ? Font.largeTitle : Font.body
     }
     
     var body: some View {
@@ -47,7 +43,9 @@ struct CardView: View {
                         .aspectRatio(2/3, contentMode: .fit)
                     Text(card.content)
                 } else {
-                    RoundedRectangle(cornerRadius: 10).fill()
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill()
+                        .aspectRatio(2/3, contentMode: .fit)
                 }
             }
         }
