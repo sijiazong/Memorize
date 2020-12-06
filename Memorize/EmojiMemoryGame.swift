@@ -8,8 +8,10 @@
 
 import SwiftUI
 
-class EmojiMemoryGame {
-    private(set) var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
+// ObservableObject must be a class
+class EmojiMemoryGame: ObservableObject {
+//  mark @published to call objectWillChange.send() when view need to change when it changes
+    @Published private(set) var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
     
     static func createMemoryGame() -> MemoryGame<String> {
         let numOfPairs = [2, 5]

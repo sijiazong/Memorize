@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct EmojiMemoryGameView: View {
-    var viewModel: EmojiMemoryGame
-    
+    @ObservedObject var viewModel: EmojiMemoryGame
+
     var fontSize: Font {
         viewModel.cards.count < 5 ? Font.largeTitle : Font.body
     }
