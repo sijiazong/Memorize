@@ -21,20 +21,12 @@ struct MemoryGame<CardContent> {
         cards.shuffle()
     }
     
-    func index(of card: Card) -> Int {
-        for idx in 0..<cards.count {
-            if cards[idx].id == card.id {
-                return idx
-            }
-        }
-        return -1 //TODO:  bogus!
-    }
-    
-//  struct are value types, need mutating prefix for functions that will change the struct
+    //  struct are value types, need mutating prefix for functions that will change the struct
     mutating func choose(card: Card) {
         print("card chosen: \(card)")
-        let chosenIndex: Int = index(of: card)
-        cards[chosenIndex].isFaceUp = !cards[chosenIndex].isFaceUp
+        if let chosenIndex: Int = cards.firstIndex(matching: card) {
+            cards[chosenIndex].isFaceUp = !cards[chosenIndex].isFaceUp
+        }
     }
     
     struct Card: Identifiable {

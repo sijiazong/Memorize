@@ -10,23 +10,17 @@ import SwiftUI
 
 struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
-
-    var fontSize: Font {
-        viewModel.cards.count < 5 ? Font.largeTitle : Font.body
-    }
     
     var body: some View {
-        HStack {
-            ForEach(viewModel.cards){ card in
-                CardView(card: card)
-                    .aspectRatio(2/3, contentMode: .fit)
-                    .onTapGesture{
-                        self.viewModel.choose(card: card)
-                }
+        Grid(items: viewModel.cards) { card in
+            CardView(card: card)
+                .aspectRatio(2/3, contentMode: .fit)
+                .onTapGesture{
+                    self.viewModel.choose(card: card)
             }
         }
-            .foregroundColor(Color.orange)
-            .padding()
+        .foregroundColor(Color.orange)
+        .padding()
     }
 }
 
