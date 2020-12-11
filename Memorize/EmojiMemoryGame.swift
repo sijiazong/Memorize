@@ -13,12 +13,14 @@ class EmojiMemoryGame: ObservableObject {
 //  mark @published to call objectWillChange.send() when view need to change when it changes
     @Published private(set) var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
     
+    static var theme: Theme?
+
     static func createMemoryGame() -> MemoryGame<String> {
-        let numOfPairs = [2, 5]
-        let randomPair = numOfPairs.randomElement()!
-        let emojis: Array<String> = ["🎃", "👻", "🕷", "🕸", "🍬"]
-        return MemoryGame<String>(numOfPairsOfCards: randomPair) { pairIndex in
-            return emojis[pairIndex]
+        let themeName: EmojiTheme = EmojiTheme.allCases.randomElement()!
+        let theme = Theme(name: themeName, numOfPairs: nil)
+        self.theme = theme
+        return MemoryGame<String>(numOfPairsOfCards: theme.numOfPairs) { pairIndex in
+            return theme.emojis[pairIndex]
         }
     }
     
@@ -32,6 +34,45 @@ class EmojiMemoryGame: ObservableObject {
         model.choose(card: card)
     }
 }
+
+enum EmojiTheme: CaseIterable {
+    case halloween, animals, sports, faces, flags
+}
+
+struct Theme {
+    var name: EmojiTheme
+    var numOfPairs: Int
+    var emojis: [String]
+    var color: Color
+
+    init(name: EmojiTheme, numOfPairs: Int?) {
+        self.name = name
+        switch name {
+        case .halloween:
+            emojis = ["🎃", "👻", "🕷", "🕸", "🍬", "☠️"]
+            color = Color.orange
+        case .animals:
+            emojis = ["🐶", "🐱", "🐰", "🦊", "🐻", "🐼", "🐷", "🐮"]
+            color = Color.blue
+        case .sports:
+            emojis = ["⚽️","🏀","🏈","⚾️","🎾","🏐","🏉","🎱"]
+            color = Color.gray
+        case .faces:
+            emojis = ["😀","😆","😂","😍","😘","😭","🥺","😱","😤","😴","😷","😵","😈"]
+            color = Color.yellow
+        case .flags:
+            emojis = ["🇦🇺","🇨🇦","🇧🇷","🇩🇪","🇯🇵","🇰🇷","🇬🇧","🇺🇸","🇨🇳","🇫🇷","🇮🇳"]
+            color = Color.red
+        }
+//        set number of cards if provided, else random
+        if let num = numOfPairs {
+            self.numOfPairs = num
+        } else {
+            self.numOfPairs = Int.random(in: 2...self.emojis.count)
+        }
+    }
+}
+
 
 struct EmojiMemoryGame_Previews: PreviewProvider {
     static var previews: some View {
