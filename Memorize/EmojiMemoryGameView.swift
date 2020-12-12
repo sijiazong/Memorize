@@ -22,6 +22,8 @@ struct EmojiMemoryGameView: View {
             .padding()
             // display game theme
             Text("Game Theme: " + EmojiMemoryGame.theme!.name.rawValue.uppercased())
+            // display game score
+            Text("Score: " + String(self.viewModel.model.score))
             // grid of cards
             Grid(items: viewModel.cards) { card in
                 CardView(card: card)
