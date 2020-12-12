@@ -15,7 +15,7 @@ struct EmojiMemoryGameView: View {
         VStack {
             // new game button
             Button(action: {
-                self.viewModel.newGame()
+                self.viewModel.createNewGame()
             }) {
                 Text("New Game")
             }
