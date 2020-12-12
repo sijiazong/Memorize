@@ -12,15 +12,27 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
     
     var body: some View {
-        Grid(items: viewModel.cards) { card in
-            CardView(card: card)
-                .aspectRatio(2/3, contentMode: .fit)
-                .onTapGesture{
-                    self.viewModel.choose(card: card)
+        VStack {
+            // new game button
+            Button(action: {
+                self.viewModel.newGame()
+            }) {
+                Text("New Game")
             }
+            .padding()
+            // display game theme
+            Text("Game Theme: " + EmojiMemoryGame.theme!.name.rawValue.uppercased())
+            // grid of cards
+            Grid(items: viewModel.cards) { card in
+                CardView(card: card)
+                    .aspectRatio(2/3, contentMode: .fit)
+                    .onTapGesture{
+                        self.viewModel.choose(card: card)
+                }
+            }
+            .foregroundColor(EmojiMemoryGame.theme!.color)
+            .padding()
         }
-        .foregroundColor(EmojiMemoryGame.theme!.color)
-        .padding()
     }
 }
 
@@ -55,8 +67,6 @@ struct CardView: View {
     let edgeLineWidth: CGFloat = 3
     let fontScaleFactor: CGFloat = 0.75
 }
-
-
 
 
 

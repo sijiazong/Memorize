@@ -33,9 +33,13 @@ class EmojiMemoryGame: ObservableObject {
     func choose(card: MemoryGame<String>.Card){
         model.choose(card: card)
     }
+    
+    func newGame(){
+        model = EmojiMemoryGame.createMemoryGame()
+    }
 }
 
-enum EmojiTheme: CaseIterable {
+enum EmojiTheme: String, CaseIterable {
     case halloween, animals, sports, faces, flags
 }
 
