@@ -10,13 +10,13 @@ import SwiftUI
 
 // ObservableObject must be a class
 class EmojiMemoryGame: ObservableObject {
-//  mark @published to call objectWillChange.send() when view need to change when it changes
+    //  mark @published to call objectWillChange.send() when view need to change when it changes
     @Published private(set) var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
     
     static var theme: Theme?
-
+    
     static func createMemoryGame() -> MemoryGame<String> {
-        let themeName: EmojiTheme = EmojiTheme.allCases.randomElement()!
+        let themeName: Theme.EmojiTheme = Theme.EmojiTheme.allCases.randomElement()!
         let theme = Theme(name: themeName, numOfPairs: nil)
         self.theme = theme
         return MemoryGame<String>(numOfPairsOfCards: theme.numOfPairs) { pairIndex in
@@ -28,7 +28,7 @@ class EmojiMemoryGame: ObservableObject {
     var cards: Array<MemoryGame<String>.Card>{
         return model.cards
     }
-
+    
     // MARK: - Intent(s)
     func choose(card: MemoryGame<String>.Card){
         model.choose(card: card)
@@ -39,16 +39,17 @@ class EmojiMemoryGame: ObservableObject {
     }
 }
 
-enum EmojiTheme: String, CaseIterable {
-    case halloween, animals, sports, faces, flags
-}
-
 struct Theme {
+    
+    enum EmojiTheme: String, CaseIterable {
+        case halloween, animals, sports, faces, flags
+    }
+    
     var name: EmojiTheme
     var numOfPairs: Int
     var emojis: [String]
     var color: Color
-
+    
     init(name: EmojiTheme, numOfPairs: Int?) {
         self.name = name
         switch name {
@@ -68,7 +69,7 @@ struct Theme {
             emojis = ["🇦🇺","🇨🇦","🇧🇷","🇩🇪","🇯🇵","🇰🇷","🇬🇧","🇺🇸","🇨🇳","🇫🇷","🇮🇳"]
             color = Color.red
         }
-//        set number of cards if provided, else random
+        // set number of cards if provided, else random
         if let num = numOfPairs {
             self.numOfPairs = num
         } else {
