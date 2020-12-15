@@ -16,7 +16,7 @@ class EmojiMemoryGame: ObservableObject {
     static var theme: Theme?
     
     static func createMemoryGame() -> MemoryGame<String> {
-        let themeName: Theme.EmojiTheme = Theme.EmojiTheme.allCases.randomElement()!
+        let themeName: Theme.ThemeName = Theme.ThemeName.allCases.randomElement()!
         let theme = Theme(name: themeName, numOfPairs: nil)
         self.theme = theme
         return MemoryGame<String>(numOfPairsOfCards: theme.numOfPairs) { pairIndex in
@@ -41,16 +41,16 @@ class EmojiMemoryGame: ObservableObject {
 
 struct Theme {
     
-    enum EmojiTheme: String, CaseIterable {
+    enum ThemeName: String, CaseIterable {
         case halloween, animals, sports, faces, flags
     }
     
-    var name: EmojiTheme
+    var name: ThemeName
     var numOfPairs: Int
     var emojis: [String]
     var color: Color
     
-    init(name: EmojiTheme, numOfPairs: Int?) {
+    init(name: ThemeName, numOfPairs: Int?) {
         self.name = name
         switch name {
         case .halloween:
