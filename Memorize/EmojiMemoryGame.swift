@@ -15,7 +15,7 @@ class EmojiMemoryGame: ObservableObject {
     
     static var theme: Theme?
     
-    static func createMemoryGame() -> MemoryGame<String> {
+    private static func createMemoryGame() -> MemoryGame<String> {
         let themeName: Theme.ThemeName = Theme.ThemeName.allCases.randomElement()!
         let theme = Theme(name: themeName, numOfPairs: nil)
         self.theme = theme
