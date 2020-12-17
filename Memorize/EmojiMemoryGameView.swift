@@ -54,6 +54,9 @@ struct CardView: View {
                     .fill(Color.white)
                 RoundedRectangle(cornerRadius: self.cornerRadius)
                     .stroke(lineWidth: self.edgeLineWidth)
+                Pie(startAngle: Angle.degrees(0-90), endAngle: Angle.degrees(100-90), clockwise: true)
+                    .padding(5)
+                    .opacity(0.4)
                 Text(self.card.content)
             } else {
                 if !card.isMatched {
@@ -70,32 +73,10 @@ struct CardView: View {
     private let fontScaleFactor: CGFloat = 0.75
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiMemoryGameView(viewModel: EmojiMemoryGame())
+        let game = EmojiMemoryGame()
+        game.choose(card: game.cards[0])
+        return EmojiMemoryGameView(viewModel: game)
     }
 }

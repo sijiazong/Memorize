@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC1E64BE258C20170089B628 /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1E64BD258C20170089B628 /* Pie.swift */; };
 		EC973372254390B800A3B20A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC973371254390B800A3B20A /* AppDelegate.swift */; };
 		EC973374254390B800A3B20A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC973373254390B800A3B20A /* SceneDelegate.swift */; };
 		EC973376254390B800A3B20A /* EmojiMemoryGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC973375254390B800A3B20A /* EmojiMemoryGameView.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC1E64BD258C20170089B628 /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
 		EC97336E254390B800A3B20A /* Memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC973371254390B800A3B20A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC973373254390B800A3B20A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				EC973370254390B800A3B20A /* Memorize */,
-				EC97336F254390B800A3B20A /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,6 +62,7 @@
 				EC97336E254390B800A3B20A /* Memorize.app */,
 			);
 			name = Products;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		EC973370254390B800A3B20A /* Memorize */ = {
@@ -75,6 +77,7 @@
 				EC9733852545F88B00A3B20A /* MemoryGame.swift */,
 				EC9733872545FAA700A3B20A /* EmojiMemoryGame.swift */,
 				EC973377254390BD00A3B20A /* Assets.xcassets */,
+				EC1E64BD258C20170089B628 /* Pie.swift */,
 				EC97337C254390BD00A3B20A /* LaunchScreen.storyboard */,
 				EC97337F254390BD00A3B20A /* Info.plist */,
 				EC973379254390BD00A3B20A /* Preview Content */,
@@ -85,6 +88,7 @@
 		EC973379254390BD00A3B20A /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				EC97336F254390B800A3B20A /* Products */,
 				EC97337A254390BD00A3B20A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -164,6 +168,7 @@
 				EC973372254390B800A3B20A /* AppDelegate.swift in Sources */,
 				EC973374254390B800A3B20A /* SceneDelegate.swift in Sources */,
 				EC9733862545F88B00A3B20A /* MemoryGame.swift in Sources */,
+				EC1E64BE258C20170089B628 /* Pie.swift in Sources */,
 				EC973376254390B800A3B20A /* EmojiMemoryGameView.swift in Sources */,
 				EC9733882545FAA700A3B20A /* EmojiMemoryGame.swift in Sources */,
 				ECB0127D257DB43E00A3F8A8 /* Array+Identifiable.swift in Sources */,
