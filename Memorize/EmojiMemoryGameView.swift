@@ -15,7 +15,9 @@ struct EmojiMemoryGameView: View {
         VStack {
             // new game button
             Button(action: {
-                self.viewModel.createNewGame()
+                withAnimation(.easeInOut(duration: 0.5)){
+                    self.viewModel.createNewGame()
+                }
             }) {
                 Text("New Game")
             }
@@ -29,7 +31,9 @@ struct EmojiMemoryGameView: View {
                 CardView(card: card)
                     .aspectRatio(2/3, contentMode: .fit)
                     .onTapGesture{
-                        self.viewModel.choose(card: card)
+                        withAnimation(.linear(duration: 0.5)){
+                            self.viewModel.choose(card: card)
+                        }
                 }
             }
             .foregroundColor(EmojiMemoryGame.theme!.color)
@@ -56,7 +60,11 @@ struct CardView: View {
                     .opacity(0.4)
                 Text(card.content)
                     .font(Font.system(size: fontScaleFactor * min(size.width, size.width)))
-            }.cardify(isFaceUp: card.isFaceUp)
+                    .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
+                    .animation(Animation.linear(duration: 0.5))
+            }
+            .cardify(isFaceUp: card.isFaceUp)
+            .transition(AnyTransition.scale)
         }
     }
     
